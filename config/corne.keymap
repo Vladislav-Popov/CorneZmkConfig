@@ -1,9 +1,3 @@
-/*
-*
-* Copyright (c) 2021 lowprokb.ca
-* SPDX-License-Identifier: MIT
-*
-*/
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
@@ -41,15 +35,15 @@
 // ------------------------------------------------------------------------------
 // | TAB  |     |     |     |     |     |   |  *  |  7  |  8  |  9  |  -  | BKSP |
 // | NLCK |     |     |     |     |     |   |  /  |  4  |  5  |  6  |  +  | DEL  |
-// | SHFT |     |     |     |     |     |   |  =  |  1  |  2  |  3  | ENT |      |
-//                    |CONFG|     | SPC |   |tgNUM|  0  |  .  |
+// | SHFT |     |     |     |     |     |   |  =  |  1  |  2  |  3  | ENT | tgNUM|
+//                    |CONFG|     | SPC |   | ENT |  0  |  .  |
 	
                         label = "NUMPAD";
                         bindings = < 
    &kp TAB     	&none 		&none		&none 		&none		&none		&kp KP_ASTERISK	&kp KP_N7 	&kp KP_N8 	&kp KP_N9 	&kp KP_MINUS	 &kp BSPC
    &kp KP_NLCK 	&none 		&none 		&none 		&none 		&none		&kp KP_SLASH	&kp KP_N4 	&kp KP_N5 	&kp KP_N6 	&kp KP_PLUS 	 &kp DEL
-   &kp LSHFT 	&none 		&none 		&none 		&none 		&none    	&kp EQUAL	&kp KP_N1 	&kp KP_N2 	&kp KP_N3 	&kp KP_ENTER 	 &none
-						&mo CONFIG 	&mo NUMROW      &kp SPC 	&tog NUMPAD 	&kp KP_N0 	&kp KP_DOT
+   &kp LSHFT 	&none 		&none 		&none 		&none 		&none    	&kp EQUAL	&kp KP_N1 	&kp KP_N2 	&kp KP_N3 	&kp KP_ENTER 	 &tog NUMPAD
+						&mo CONFIG 	&mo NUMROW      &kp SPC 	&kp ENTER 	&kp KP_N0 	&kp KP_DOT
                         >;
                 }; 
 
@@ -75,15 +69,15 @@
 // ------------------------------------------------------------------------------
 // |  F1  |  F2 | F3  |  F4 |  F5 |  F6 |   | F7  |  F8 | F9  | F10 | F11 |  F12 |
 // | CTLR | INS |     |     |     | HOME|   |PG_UP|     | UP  |     |     |  DEL |
-// | SHFT | DEL |     |     |     | END |   |PG_DN|LEFT | DWN | RGT |     | C+A+D|
-//		      | GUI |     | SPC |   |tgNUM|PUSH | ALT |
+// | SHFT | DEL |     |     |     | END |   |PG_DN|LEFT | DWN | RGT |     | tgNUM|
+//		      | GUI |     | SPC |   | ENT |PUSH | ALT |
 
                         label = "ADJUST";
                         bindings = <
    &kp F1	&kp F2  	&kp F3   	&kp F4    	&kp F5 		&kp F6    	&kp F7   	&kp F8   	&kp F9 		&kp F10   	&kp F11 	&kp F12
    &kp LCTL	&kp INS 	&none		&none	 	&none  		&kp HOME      	&kp PG_UP    	&none 	 	&kp UP 		&none 		&none   	&kp DEL
-   &kp LSHFT	&kp DEL 	&none	  	&none		&none  		&kp END     	&kp PG_DN    	&kp LEFT 	&kp DOWN  	&kp RIGHT   	&none   	&kp LC(LA(DEL))
-						&kp LGUI 	&mo NUMROW      &kp SPC    	&tog NUMPAD     &mo ADJUST 	&kp LALT
+   &kp LSHFT	&kp DEL 	&none	  	&none		&none  		&kp END     	&kp PG_DN    	&kp LEFT 	&kp DOWN  	&kp RIGHT   	&none   	&tog NUMPAD
+						&kp LGUI 	&mo NUMROW      &kp SPC    	&kp ENTER       &mo ADJUST 	&kp LALT
                         >;
                 };
 
@@ -105,3 +99,6 @@
                 };
         };
 };
+
+
+// ctrl+alt+del - &kp LC(LA(DEL))
