@@ -1,0 +1,107 @@
+/*
+*
+* Copyright (c) 2021 lowprokb.ca
+* SPDX-License-Identifier: MIT
+*
+*/
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+#define QWERTY 0
+#define NUMPAD 1
+#define NUMROW 2
+#define ADJUST 3
+#define CONFIG 4
+
+/ {
+        keymap {
+                compatible = "zmk,keymap";
+
+
+                default_layer {	
+// -------------------------------------------------------------------------------
+// | TAB  |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  | BKSP |
+// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J  |  K  |  L  |  ;  |  '   |
+// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  /  | SHFT |
+//                    | GUI | NROW| SPC |   | ENT | ADJ | ALT |
+
+                        label = "QWERTY";
+                        bindings = <
+   &kp TAB   	&kp Q 		&kp W 		&kp E 		&kp R 		&kp T		&kp Y		&kp U 		&kp I    		&kp O   		&kp P    		&kp BKSP
+   &kp LCTL  	&kp A 		&kp S 		&kp D 		&kp F 		&kp G		&kp H 		&kp J 		&kp K    		&kp L   		&kp SEMI 		&kp SQT
+   &kp LSHFT 	&kp Z 		&kp X 		&kp C 		&kp V 		&kp B    	&kp N 		&kp M 		&kp COMMA 		&kp DOT 		&kp FSLH 		&kp RSHFT
+						&kp LGUI 	&mo NUMROW      &kp SPC 	&kp ENTER 	&mo ADJUST 	&kp LALT
+                        >;
+                };
+
+
+                numpad_layer {
+// ------------------------------------------------------------------------------
+// | TAB  |     |     |     |     |     |   |  *  |  7  |  8  |  9  |  -  | BKSP |
+// | NLCK |     |     |     |     |     |   |  /  |  4  |  5  |  6  |  +  | DEL  |
+// | SHFT |     |     |     |     |     |   |  =  |  1  |  2  |  3  | ENT |      |
+//                    |CONFG|     | SPC |   |tgNUM|  0  |  .  |
+	
+                        label = "NUMPAD";
+                        bindings = < 
+   &kp TAB     	&none 		&none		&none 		&none		&none		&kp KP_ASTERISK	&kp KP_N7 	&kp KP_N8 	&kp KP_N9 	&kp KP_MINUS	 &kp BSPC
+   &kp KP_NLCK 	&none 		&none 		&none 		&none 		&none		&kp KP_SLASH	&kp KP_N4 	&kp KP_N5 	&kp KP_N6 	&kp KP_PLUS 	 &kp DEL
+   &kp LSHFT 	&none 		&none 		&none 		&none 		&none    	&kp EQUAL	&kp KP_N1 	&kp KP_N2 	&kp KP_N3 	&kp KP_ENTER 	 &none
+						&mo CONFIG 	&mo NUMROW      &kp SPC 	&tog NUMPAD 	&kp KP_N0 	&kp KP_DOT
+                        >;
+                }; 
+
+
+                numrow_layer {	
+// ------------------------------------------------------------------------------
+// | ESC  |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
+// | CAPS |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | DEL  |
+// | SHFT |  `  |  +  |  -  |  {  |  [  |   |  ]  |  }  |  _  |  =  |  \  |      |
+//                    |CONFG|PUSH | SPC |   | ENT | ADJ | ALT |
+
+                        label = "NUMROW";
+                        bindings = <
+   &kp ESC   	&kp N1 		&kp N2 		&kp N3  	&kp N4 		&kp N5  		&kp N6                 &kp N7			&kp N8 			&kp N9    		&kp N0   	&kp BSPC
+   &kp CAPS  	&kp EXCL	&kp AT  	&kp HASH  	&kp DLLR 	&kp PRCNT 		&kp CARET  	       &kp AMPS	                &kp KP_MULTIPLY	        &kp LPAR		&kp RPAR	&kp DEL
+   &kp LSHFT 	&kp GRAVE 	&kp KP_PLUS	&kp KP_MINUS	&kp LEFT_BRACE	&kp LEFT_BRACKET  	&kp RIGHT_BRACKET      &kp RIGHT_BRACE   	&kp UNDERSCORE          &kp EQUAL		&kp BACKSLASH  	&none
+						&mo CONFIG 	&mo NUMROW  	&kp SPC 		&kp ENTER 	       &mo ADJUST 		&kp LALT
+                        >;
+                };
+
+
+                adjust_layer {		
+// ------------------------------------------------------------------------------
+// |  F1  |  F2 | F3  |  F4 |  F5 |  F6 |   | F7  |  F8 | F9  | F10 | F11 |  F12 |
+// | CTLR | INS |     |     |     | HOME|   |PG_UP|     | UP  |     |     |  DEL |
+// | SHFT | DEL |     |     |     | END |   |PG_DN|LEFT | DWN | RGT |     | C+A+D|
+//		      | GUI |     | SPC |   |tgNUM|PUSH | ALT |
+
+                        label = "ADJUST";
+                        bindings = <
+   &kp F1	&kp F2  	&kp F3   	&kp F4    	&kp F5 		&kp F6    	&kp F7   	&kp F8   	&kp F9 		&kp F10   	&kp F11 	&kp F12
+   &kp LCTL	&kp INS 	&none		&none	 	&none  		&kp HOME      	&kp PG_UP    	&none 	 	&kp UP 		&none 		&none   	&kp DEL
+   &kp LSHFT	&kp DEL 	&none	  	&none		&none  		&kp END     	&kp PG_DN    	&kp LEFT 	&kp DOWN  	&kp RIGHT   	&none   	&kp LC(LA(DEL))
+						&kp LGUI 	&mo NUMROW      &kp SPC    	&tog NUMPAD     &mo ADJUST 	&kp LALT
+                        >;
+                };
+
+                    
+                config_layer {			
+// ------------------------------------------------------------------------------
+// | RSET |     |     |     |     |     |   |VOL+ |BRI+ |     |     |PSCRN| CALC |
+// | BTCLR| BT0 | BT1 | BT2 | BT3 | BT4 |   |VOL- |BRI- |     |     |     |      |
+// |      |     |     |     |     |     |   |MUTE |     |     |     |     |      |
+//                    |PUSH |PUSH | SPC |   | ENT | ADJ |     |
+
+                        label = "CONFIG";
+                        bindings = <
+   &reset     	&none        	&none        	&none        	&none        	&none           &kp C_VOLUME_UP 	&kp C_BRI_UP  	&none 		&none 		&kp PSCRN 	&kp C_AL_CALC
+   &bt BT_CLR 	&bt BT_SEL 0 	&bt BT_SEL 1 	&bt BT_SEL 2 	&bt BT_SEL 3 	&bt BT_SEL 4    &kp C_VOLUME_DOWN 	&kp C_BRI_DN 	&none 		&none 		&none 		&none
+   &none      	&none        	&none        	&none        	&none        	&none           &kp C_MUTE 		&none 		&none 		&none 		&none 		&none
+                                                &mo CONFIG 	&mo NUMROW  	&kp SPC  	&kp ENTER 		&mo ADJUST 	&none 
+                        >;
+                };
+        };
+};
